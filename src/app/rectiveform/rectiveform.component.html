@@ -1,0 +1,54 @@
+<!--p>templeteform works!</p-->
+<mat-card>
+  <mat-toolbar>
+      Reactive Form
+  </mat-toolbar>
+  <br><br>
+  <form [formGroup]="RegisterForm" (ngSubmit)="getDetails()">
+      <mat-form-field>
+          <input type="text" matInput placeholder="Your name"  formControlName="username">
+      </mat-form-field>
+      <br><br>
+      <mat-form-field>
+          <input type="text" matInput placeholder="Your email" formControlName="email">
+      </mat-form-field>
+      <br><br>
+      <mat-form-field>
+          <input type="text" matInput placeholder="Contact" formControlName="contact">
+      </mat-form-field>
+      <br><br>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Password" formControlName="password">
+    </mat-form-field>
+    <br><br>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Confirm password" formControlName="confirmpassword">
+  </mat-form-field>
+  <br><br>
+      <!--mat-form-field>
+          <input type="text" matInput placeholder="Location"  formControlName="location">
+      </mat-form-field-->
+      <h4>Location</h4>
+<mat-form-field appearance="fill" >
+  <mat-label>Select State</mat-label>
+  <select matNativeControl required formControlName="location">
+    <option value="Punjab">Punjab</option>
+    <option value="Delhi">Delhi</option>
+    <option value="Rajasthan">Rajasthan</option>
+    <option value="Haryana">Haryana</option>
+  </select>
+</mat-form-field>
+      <br><br>
+      <p>Select Gender<br></p>
+      <mat-radio-group type="radio" matInput formControlName="gender" aria-label="Select an option">
+        <mat-radio-button value="Male">Male</mat-radio-button>
+        <mat-radio-button value="Female">Female</mat-radio-button>
+      </mat-radio-group>
+      <br><br>
+      <mat-checkbox type="checkbox" matInput formControlName="checkbox" class="example-margin">I Accept!!!</mat-checkbox>
+
+    <br><br>
+      <button type="submit" mat-raised-button color="primary">Submit</button>
+  </form>
+</mat-card>
+

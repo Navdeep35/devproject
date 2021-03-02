@@ -1,0 +1,129 @@
+<!--p>templeteform works!</p-->
+<mat-card>
+    <mat-toolbar>
+        Template Driven Form
+    </mat-toolbar>
+    <br><br>
+    <form  #registerForm="ngForm" name="form" (ngSubmit)="registerForm.form.valid && onSubmit(registerForm)">
+        <mat-form-field>
+            <input type="text"
+            matInput placeholder="Your name"
+            ngModel name="username" #username="ngModel"
+            [(ngModel)]="model.username" required
+            [ngClass]="{'is-invalid':registerForm.submitted && username.invalid }">
+        </mat-form-field>
+        <mat-error *ngIf="registerForm.submitted && username.invalid">
+        <mat-error *ngIf="username.errors?.required">
+          Name Should be entered
+        </mat-error>
+        </mat-error>
+        <br><br>
+        <mat-form-field>
+            <input type="text" matInput placeholder="Your email" ngModel name="useremail" #useremail="ngModel"
+            [(ngModel)]="model.useremail" required email
+            [ngClass]="{'is-invalid':registerForm.submitted && useremail.invalid }">
+        </mat-form-field>
+        <mat-error *ngIf="registerForm.submitted && useremail.invalid">
+          <mat-error *ngIf="useremail.errors?.required">
+            Email Should be entered
+          </mat-error>
+          <mat-error *ngIf="useremail.errors?.email">
+            Should be in email format
+          </mat-error>
+        </mat-error>
+        <br><br>
+        <mat-form-field>
+            <input type="text" matInput placeholder="Contact" ngModel name="Contact"
+             #contact="ngModel"
+            [(ngModel)]="model.contact" required
+            [ngClass]="{'is-invalid':registerForm.submitted && contact.invalid }" pattern="[789][0-9]{9}">
+        </mat-form-field>
+        <mat-error *ngIf="registerForm.submitted && contact.invalid">
+          <mat-error *ngIf="contact.errors?.required">
+            Contact Number Should be entered
+          </mat-error>
+          <mat-error *ngIf="contact.errors?.pattern">
+            Should be in correct format
+          </mat-error>
+        </mat-error>
+        <br><br>
+        <mat-form-field>
+          <input type="text" matInput placeholder="Password" ngModel name="Password" #Password="ngModel"
+          [(ngModel)]="model.Password" required
+          [ngClass]="{'is-invalid':registerForm.submitted && Password.invalid }" minlength="8">
+      </mat-form-field>
+      <mat-error *ngIf="registerForm.submitted && Password.invalid">
+        <mat-error *ngIf="Password.errors?.required">
+          Password Should be entered
+        </mat-error>
+        <mat-error *ngIf="Password.errors?.minlength">
+          Should be greater than 8
+        </mat-error>
+      </mat-error>
+      <br><br>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Confirm password" ngModel name="ConfirmPassword"
+        #Confirmpassword="ngModel"
+          [(ngModel)]="model.Confirmpassword" required
+          [ngClass]="{'is-invalid':registerForm.submitted && Password.invalid }"
+           pattern="{{Password.value}}">
+    </mat-form-field>
+    <mat-error *ngIf="registerForm.submitted && Confirmpassword.invalid">
+      <mat-error *ngIf="Confirmpassword.errors?.required">
+        Confirm Password Should be entered
+      </mat-error>
+      <mat-error *ngIf="Confirmpassword.errors?.pattern">
+        Should be matched with upper password
+      </mat-error>
+    </mat-error>
+    <br><br>
+        <!--mat-form-field>
+            <input type="text" matInput placeholder="Location" ngModel name="location">
+        </mat-form-field-->
+        <h4>Location</h4>
+<mat-form-field appearance="fill">
+  <mat-label>Select State</mat-label>
+  <select matNativeControl required ngModel name="location" #location="ngModel"
+  [(ngModel)]="model.location" required
+  [ngClass]="{'is-invalid':registerForm.submitted && location.invalid }">
+    <option value="Punjab">Punjab</option>
+    <option value="Delhi">Delhi</option>
+    <option value="Rajasthan">Rajasthan</option>
+    <option value="Haryana">Haryana</option>
+  </select>
+</mat-form-field>
+<mat-error *ngIf="registerForm.submitted && location.invalid">
+  <mat-error *ngIf="location.errors?.required">
+    Select the location
+  </mat-error>
+</mat-error>
+        <br><br>
+        <p>Select Gender<br></p>
+        <mat-radio-group type="radio" matInput ngModel name="Gender" aria-label="Select an option"
+        #Gender="ngModel"
+  [(ngModel)]="model.Gender" required
+  [ngClass]="{'is-invalid':registerForm.submitted && Gender.invalid }">
+          <mat-radio-button value="Male">Male</mat-radio-button>
+          <mat-radio-button value="Female">Female</mat-radio-button>
+
+        </mat-radio-group>
+        <mat-error *ngIf="registerForm.submitted && Gender.invalid">
+          <mat-error *ngIf="Gender.errors?.required">
+            Select Your Gender.
+          </mat-error>
+        </mat-error>
+
+<br><br>
+        <mat-checkbox type="checkbox" matInput ngModel name="Terms" class="example-margin"
+        #chechbox="ngModel"
+            [(ngModel)]="model.checkbox" required
+            [ngClass]="{'is-invalid':registerForm.submitted && chechbox.invalid }">I Accept!!!</mat-checkbox>
+            <mat-error *ngIf="registerForm.submitted && chechbox.invalid">
+              <mat-error *ngIf="chechbox.errors?.required">
+                Accept the terms
+              </mat-error>
+              </mat-error>
+      <br><br>
+        <button type="submit" mat-raised-button color="primary">Submit</button>
+    </form>
+</mat-card>
